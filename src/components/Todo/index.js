@@ -14,7 +14,7 @@ function Todo({ task, completed, removeTodo, toggleTodo, id, editTodo }) {
   const [isEditing, toggle] = useToggleState(false);
 
   return (
-    <ListItem>
+    <ListItem style={{ height: "64px" }}>
       {/* if "isEditing" is true, display the form; otherwise, return everything in the list item */}
       {isEditing 
         ? 

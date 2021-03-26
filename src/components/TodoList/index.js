@@ -9,7 +9,7 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
     <Paper>
       <List>
-        {todos.map(todo => (
+        {todos.map((todo, i) => (
           <>
             <Todo 
               id={todo.id}
@@ -20,7 +20,8 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
               toggleTodo={toggleTodo}
               editTodo={editTodo}
             />
-            <Divider />
+            {/* if "i" is less than todos.length - 1, then show the divider */}
+            {i < todos.length - 1 && <Divider />}
           </>
         ))}
       </List>
