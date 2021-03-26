@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./../TodoList";
 import TodoForm from "./../TodoForm";
 import Typography from "@material-ui/core/Typography";
@@ -9,13 +9,19 @@ import Grid from "@material-ui/core/Grid";
 import { v4 as uuidv4 } from 'uuid';
 
 function TodoApp() {
-  const initialTodos = [
-    { id: 1, task: "Clean Fishtank", completed: false },
-    { id: 2, task: "Wash Car", completed: true },
-    { id: 3, task: "Grow Beard", completed: false },
-  ];
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  // const initialTodos = [
+  //   { id: 1, task: "Clean Fishtank", completed: false },
+  //   { id: 2, task: "Wash Car", completed: true },
+  //   { id: 3, task: "Grow Beard", completed: false },
+  // ];
 
   const [todos, setTodos] = useState(initialTodos);
+
+  // sync todos to local storage
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);  // <-- it's best practice to add the second argument to specify when useEffect should run
 
   const addTodo = newTodoText => {
     // call setTodos; spread out all the current todos, then add a todo to the end
