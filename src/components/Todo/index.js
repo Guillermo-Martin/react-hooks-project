@@ -8,13 +8,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 // we're destructuring "task" and "completed" from the props
-function Todo({task, completed}) {
+function Todo({ task, completed, removeTodo, toggleTodo, id }) {
   return (
     <ListItem>
-      <Checkbox tabIndex={-1} checked={completed} />
+      <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)}/>
       <ListItemText style={{ textDecoration: completed ? "line-through" : "none" }}>{task}</ListItemText>
       <ListItemSecondaryAction>
-        <IconButton aria-label="Delete">
+        <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
           <DeleteIcon />
         </IconButton>
         <IconButton aria-label="Edit">
