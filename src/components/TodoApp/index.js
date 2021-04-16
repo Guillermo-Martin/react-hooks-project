@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useTodoState from "./../../hooks/useTodoState";
 import TodoList from "./../TodoList";
 import TodoForm from "./../TodoForm";
@@ -10,14 +10,14 @@ import Grid from "@material-ui/core/Grid";
 
 
 function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  const initialTodos = [{ id: 1, task: "Pet a monkey", completed: false }];
 
   const {todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(initialTodos);
 
   // sync todos to local storage
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);  // <-- it's best practice to add the second argument to specify when useEffect should run
+  // useEffect(() => {
+  //   window.localStorage.setItem("todos", JSON.stringify(todos));
+  // }, [todos]);  // <-- it's best practice to add the second argument to specify when useEffect should run
 
   return (
     <Paper 
